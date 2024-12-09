@@ -1,0 +1,13 @@
+[package]
+name = "todos"
+version = "0.1.0"
+authors = ["Joonas Satka <joonas.satka@gmail.com>"]
+edition = "2021"
+publish = false
+
+[dependencies.iced]
+git = "https://github.com/iced-rs/iced/"
+rev = "d6182299b9db7a1928b7740736d53196e33d66e3"
+
+[dependencies]
+iced_reorderable = { path = "../.." }
