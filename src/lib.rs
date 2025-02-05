@@ -396,7 +396,7 @@ where
     fn update(
         &mut self,
         tree: &mut Tree,
-        event: Event,
+        event: &Event,
         layout: Layout<'_>,
         cursor: mouse::Cursor,
         renderer: &Renderer,
@@ -414,7 +414,7 @@ where
             {
                 child.as_widget_mut().update(
                     state,
-                    event.clone(),
+                    event,
                     item_layout,
                     cursor,
                     renderer,
@@ -832,11 +832,11 @@ where
 /// Returns whether to propagate an [`Event`] to children of a [`Column`].
 ///
 /// Will return `false` for mouse and touch events if a child element is being dragged.
-fn propagage_event_to_children<Key>(
+fn propagage_event_to_children<'a, Key>(
     drag_state: &DragState<Key>,
-    event: &Event,
+    event: &'a Event,
     cursor: mouse::Cursor,
-) -> Option<(Event, mouse::Cursor)>
+) -> Option<(&'a Event, mouse::Cursor)>
 where
     Key: Copy + PartialEq,
 {
@@ -844,10 +844,10 @@ where
         match event {
             Event::Touch(touch::Event::FingerMoved { .. })
             | Event::Mouse(mouse::Event::CursorMoved { .. }) => None,
-            _ => Some((event.clone(), mouse::Cursor::Unavailable)),
+            _ => Some((event, mouse::Cursor::Unavailable)),
         }
     } else {
-        Some((event.clone(), cursor))
+        Some((event, cursor))
     }
 }
 

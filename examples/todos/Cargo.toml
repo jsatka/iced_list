@@ -7,7 +7,7 @@ publish = false
 
 [dependencies.iced]
 git = "https://github.com/iced-rs/iced/"
-rev = "d6182299b9db7a1928b7740736d53196e33d66e3"
+rev = "4bbb5cbc1f8b2a0ee8e09be18071368df3ba5bbd"
 
 [dependencies]
 iced_reorderable = { path = "../.." }
